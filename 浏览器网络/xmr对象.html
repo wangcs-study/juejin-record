@@ -7,6 +7,25 @@
   <title>XMLHTTPRequest对象</title>
 </head>
 <body>
-  
+  <script>
+    const xhr=new XMLHttpRequest();
+    xhr.open('get','/api/xxx',true);
+    xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    xhr.send('username=admin');
+    xhr.onreadystatechange=function(){
+      // onreadystatechange会触发多次，xhr对象有多个状态码
+      // 0：请求未建立（创建了xhr对象，但是还没调用open）
+      // 1：服务器链接已建立
+      // 2：请求已接收（send之后，服务器已经接收了请求）
+      // 3：请求处理中
+      // 4：请求已完成，且响应已就绪（4状态码等于onload事件）
+      if(xhr.readyState===4){
+        console.log(xhr.responseText)
+      }
+    }
+    // 取消请求
+    xhr.abort();
+    
+  </script>
 </body>
 </html>
